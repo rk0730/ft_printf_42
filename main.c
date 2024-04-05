@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int	ft_printf(char *str);
 
-#ifdef TEST
+#ifdef FT
 # define F(...) ft_printf(__VA_ARGS__);
 #else
 # define F(...) printf(__VA_ARGS__);
@@ -12,5 +13,8 @@ int	ft_printf(char *str);
 int	main(void)
 {
 	F("abc\n");
+	#ifdef FT
+		// system("leaks -q ft_printf");
+	#endif
 	return (0);
 }

@@ -10,7 +10,7 @@ test: ft_printf.txt printf.txt
 	./$< > $@
 
 ft_printf: $(SRCS)
-	gcc $^ -D TEST -o $@
+	gcc $^ -D FT -o $@
 
 printf: $(SRCS)
 	gcc $^ -o $@

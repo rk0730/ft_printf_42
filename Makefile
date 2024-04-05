@@ -1,6 +1,8 @@
 
 SRCS = main.c ft_printf.c
 
+all: ft_printf
+
 test: ft_printf.txt printf.txt
 	diff ft_printf.txt printf.txt
 
@@ -13,6 +15,10 @@ ft_printf: $(SRCS)
 printf: $(SRCS)
 	gcc $^ -o $@
 
-clean:
-	rm ft_printf printf
+# clean:
+# 	.o files
+
+fclean:
 	rm ft_printf printf ft_printf.txt printf.txt
+
+re: fclean ft_printf printf

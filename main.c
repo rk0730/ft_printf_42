@@ -13,8 +13,5 @@ int	ft_printf(char *str);
 int	main(void)
 {
 	F("abc\n");
-	#ifdef FT
-		// system("leaks -q ft_printf");
-	#endif
 	return (0);
 }

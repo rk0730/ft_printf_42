@@ -31,3 +31,5 @@ fclean:
 	rm -f ft_printf printf sanitize ft_printf.txt printf.txt
 
 re: fclean ft_printf printf
+
+.PHONY: all leak sanitize test ft_printf printf

@@ -1,3 +1,4 @@
+CC = cc
 FLAGS = -Wall -Wextra -Werror
 SANITIZE = -fsanitize=address -g
 
@@ -9,7 +10,7 @@ leak: ft_printf
 	leaks -q -atExit -- ./ft_printf
 
 sanitize: $(SRCS)
-	gcc $(FLAGS) $(SANITIZE) $^ -D FT -o $@
+	$(CC) $(FLAGS) $(SANITIZE) $^ -D FT -o $@
 
 test: ft_printf.txt printf.txt
 	diff ft_printf.txt printf.txt
@@ -18,17 +19,18 @@ test: ft_printf.txt printf.txt
 	./$< > $@
 
 ft_printf: $(SRCS)
-	gcc $(FLAGS) $^ -D FT -o $@
+	$(CC) $(FLAGS) $^ -D FT -o $@
 
 printf: $(SRCS)
-	gcc $(FLAGS) $^ -o $@
+	$(CC) $(FLAGS) $^ -o $@
 
-# clean:
-# 	rm -f .o files
-
-fclean:
+clean:
 	rm -rf sanitize.dSYM
-	rm -f ft_printf printf sanitize ft_printf.txt printf.txt
+	rm -f sanitize ft_printf.txt printf.txt
+#	rm -f .o files
+
+fclean: clean
+	rm -f ft_printf printf
 
 re: fclean ft_printf printf
 

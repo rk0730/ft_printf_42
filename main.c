@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	ft_printf(char *str);
+int	ft_printf(const char *format, ...);
 
 #ifdef FT
-# define F(...) ft_printf(__VA_ARGS__);
+# define PRINTF ft_printf
 #else
-# define F(...) printf(__VA_ARGS__);
+# define PRINTF printf
 
 #endif
 
 int	main(void)
 {
-	F("abc\n");
+	PRINTF("a%%b12%d%d\n", 345, 678);
 	return (0);
 }

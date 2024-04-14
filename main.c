@@ -6,7 +6,7 @@
 /*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:30:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/04/14 00:30:31 by kitaoryoma       ###   ########.fr       */
+/*   Updated: 2024/04/14 22:22:37 by kitaoryoma       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,8 @@ int	ft_printf(const char *format, ...);
 int	main(void)
 {
 	PRINTF("a%%b12%d%d\n", 345, 678);
+	PRINTF("%f\n", 123.456f);
+	float f = 123.456;
+	PRINTF("%f\n", f);
 	return (0);
 }

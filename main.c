@@ -3,30 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rkitao <rkitao@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:30:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/04/14 22:22:37 by kitaoryoma       ###   ########.fr       */
+/*   Updated: 2024/05/04 21:13:41 by rkitao           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "ft_printf.h"
 
-int	ft_printf(const char *format, ...);
+#include <stdio.h>
 
 #ifdef FT
 # define PRINTF ft_printf
+#define F(...) ft_printf("\n ∟ res %d\n\n", ft_printf(__VA_ARGS__));
 #else
-# define PRINTF printf
+#define F(...) printf("\n ∟ res %d\n\n", printf(__VA_ARGS__));
 
 #endif
 
 int	main(void)
 {
-	PRINTF("a%%b12%d%d\n", 345, 678);
-	PRINTF("%f\n", 123.456f);
-	float f = 123.456;
-	PRINTF("%f\n", f);
+	// F("[%c2 Tokyo]", '4');
+	// F("[42 %s]", "Tokyo");
+	// F("[%p Tokyo]", (void *)10);
+	// F("[%d Tokyo]", 42);
+	// int	i = -2147483648;
+	// F("%d", i);
+	// F("%d", 2147483648);
+	// F("%d", 2147483647);
+	// F("%d", 0);
+	// F("%d", 12345);
+	// F("%d", -1);
+	// F("[%i Tokyo]", 42);
+	// F("[%u Tokyo]", 42);
+	// F("[%x Tokyo]", 42);
+	// F("[%X Tokyo]", 42);
+	// F("[42%% Tokyo]");
+	F("%u", 0);
+	F("%u", 10);
+	F("%u", 9876543);
+	F("%u", -1);
+
+	F("%p", "abc");
+	F("%c %c", '1', '2');
 	return (0);
 }

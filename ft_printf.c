@@ -3,41 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
+/*   By: rkitao <rkitao@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:18:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/04/14 00:28:59 by kitaoryoma       ###   ########.fr       */
+/*   Updated: 2024/05/04 21:03:08 by rkitao           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	ft_putchar(char c)
-{
-	// return (write(STDOUT_FILENO, &c, 1));
-	return (printf("%c", c));
-}
+#include <stdio.h>
+
+// int	ft_putchar(char c)
+// {
+// 	// return (write(STDOUT_FILENO, &c, 1));
+// 	return (printf("%c", c));
+// }
 
 int	ft_formats(char fmt, va_list *arg)
 {
-	//変換指定子ごとに分岐する場所　各戻り値はそれぞれ対応する関数が入る
 	if (fmt == '%')
-		return (ft_putchar('%'));
-	else if (fmt == 'd')
-		return (printf("%d", va_arg(*arg, int)));
+		return (ft_convert_c('%'));
 	else if (fmt == 'c')
-		return (printf("%c", (char)va_arg(*arg, int)));
-	printf("error\n");
-	return (0);
+		return (ft_convert_c((char)va_arg(*arg, int)));
+	else if (fmt == 's')
+		return (ft_convert_s(va_arg(*arg, char *)));
+	// else if (fmt == 'p')
+	// 	return (printf("%d", va_arg(*arg, int)));
+	else if (fmt == 'd')
+		return (ft_convert_d(va_arg(*arg, int)));
+	else if (fmt == 'i')
+		return (ft_convert_d(va_arg(*arg, int)));
+	else if (fmt == 'u')
+		return (ft_convert_u(va_arg(*arg, unsigned int)));
+	// else if (fmt == 'x')
+	// 	return (printf("%d", va_arg(*arg, int)));
+	// else if (fmt == 'X')
+	// 	return (printf("%d", va_arg(*arg, int)));
+	write(STDOUT_FILENO, "error\n", 6);
+	return (-1);
 }
-
 
 int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		ans;
+	int		result;
 	va_list	arg;
 
 	i = 0;
@@ -48,10 +59,14 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			ans += ft_formats(format[i], &arg);
+			result = ft_formats(format[i], &arg);
 		}
 		else
-			ans += ft_putchar(format[i]);
+			result = ft_convert_c(format[i]);
+		if (result == -1)
+			return (-1);
+		else
+			ans += result;
 		i++;
 	}
 	va_end(arg);

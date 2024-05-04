@@ -1,16 +1,36 @@
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+AR = ar rc
+CFLAGS = -Wall -Wextra -Werror
+
 SANITIZE = -fsanitize=address -g
 
-SRCS = main.c ft_printf.c
+SRCS = ft_printf.c \
+	ft_convert_cs.c \
+	ft_convert_d.c \
+	ft_convert_u.c \
 
-all: ft_printf
+TEST_SRC = main.c
 
-leak: ft_printf
-	leaks -q -atExit -- ./ft_printf
+OBJS = $(SRCS:.c=.o)
 
-sanitize: $(SRCS)
-	$(CC) $(FLAGS) $(SANITIZE) $^ -D FT -o $@
+NAME = libftprintf.a
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -I. -c $< -o $@
+
+# leak: ft_printf
+# 	leaks -q -atExit -- ./ft_printf
+
+# sanitize: $(SRCS)
+# 	$(CC) $(CFLAGS) $(SANITIZE) $^ -D FT -o $@
+
+#printfデバッグの出力結果は.txtでは正しく見れない。./ft_printfを実行して確認する
+#.txtはあくまでdiffをとる用にしか使えない
 
 test: ft_printf.txt printf.txt
 	diff ft_printf.txt printf.txt
@@ -18,20 +38,21 @@ test: ft_printf.txt printf.txt
 %.txt: %
 	./$< > $@
 
-ft_printf: $(SRCS)
-	$(CC) $(FLAGS) $^ -D FT -o $@
+ft_printf: $(NAME) $(TEST_SRC)
+	$(CC) $(CFLAGS) -I. $^ -D FT -o $@
 
-printf: $(SRCS)
-	$(CC) $(FLAGS) $^ -o $@
+printf: $(TEST_SRC)
+	$(CC) $(CFLAGS) -I. $^ -o $@
 
 clean:
 	rm -rf sanitize.dSYM
 	rm -f sanitize ft_printf.txt printf.txt
-#	rm -f .o files
+	rm -f $(OBJS)
 
 fclean: clean
-	rm -f ft_printf printf
+	rm -f printf ft_printf
+	rm -f $(NAME)
 
-re: fclean ft_printf printf
+re: fclean all
 
-.PHONY: all leak sanitize test ft_printf printf
+.PHONY: all test clean fclean re

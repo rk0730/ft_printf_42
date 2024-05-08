@@ -8,6 +8,7 @@ SRCS = ft_printf.c \
 	ft_convert_cs.c \
 	ft_convert_d.c \
 	ft_convert_u.c \
+	ft_convert_p.c \
 
 TEST_SRC = main.c
 

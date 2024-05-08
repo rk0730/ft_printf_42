@@ -3,22 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkitao <rkitao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:18:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/05/04 21:03:08 by rkitao           ###   ########.fr       */
+/*   Updated: 2024/05/08 12:50:04 by kitaoryoma       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 #include <stdio.h>
-
-// int	ft_putchar(char c)
-// {
-// 	// return (write(STDOUT_FILENO, &c, 1));
-// 	return (printf("%c", c));
-// }
 
 int	ft_formats(char fmt, va_list *arg)
 {
@@ -28,8 +22,8 @@ int	ft_formats(char fmt, va_list *arg)
 		return (ft_convert_c((char)va_arg(*arg, int)));
 	else if (fmt == 's')
 		return (ft_convert_s(va_arg(*arg, char *)));
-	// else if (fmt == 'p')
-	// 	return (printf("%d", va_arg(*arg, int)));
+	else if (fmt == 'p')
+		return (ft_convert_p(va_arg(*arg, void *)));
 	else if (fmt == 'd')
 		return (ft_convert_d(va_arg(*arg, int)));
 	else if (fmt == 'i')

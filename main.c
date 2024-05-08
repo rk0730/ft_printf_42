@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkitao <rkitao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:30:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/05/04 21:13:41 by rkitao           ###   ########.fr       */
+/*   Updated: 2024/05/08 13:01:35 by kitaoryoma       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 #include <stdio.h>
+#include <limits.h>
 
 #ifdef FT
 # define PRINTF ft_printf
@@ -22,30 +23,38 @@
 
 #endif
 
-int	main(void)
+int main(void)
 {
-	// F("[%c2 Tokyo]", '4');
-	// F("[42 %s]", "Tokyo");
-	// F("[%p Tokyo]", (void *)10);
-	// F("[%d Tokyo]", 42);
-	// int	i = -2147483648;
-	// F("%d", i);
-	// F("%d", 2147483648);
-	// F("%d", 2147483647);
-	// F("%d", 0);
-	// F("%d", 12345);
-	// F("%d", -1);
-	// F("[%i Tokyo]", 42);
-	// F("[%u Tokyo]", 42);
-	// F("[%x Tokyo]", 42);
-	// F("[%X Tokyo]", 42);
-	// F("[42%% Tokyo]");
-	F("%u", 0);
-	F("%u", 10);
-	F("%u", 9876543);
-	F("%u", -1);
+	// %% テスト
+	F("%%%%");
 
-	F("%p", "abc");
-	F("%c %c", '1', '2');
-	return (0);
+	// %c テスト
+	F("%c", 'A');
+	F("%c", 'B');
+	F("%c", 'C');
+
+	// %s テスト
+	F("%s", "Tokyo");
+	F("%s", "Osaka");
+	F("%s", "Kyoto");
+
+	// %p テスト
+	F("%p", (void *)12345);
+	F("%p", (void *)0);
+
+	// %d, %i テスト
+	F("%d", 0);
+	F("%d", 12345);
+	F("%d", -1234);
+	F("%d", 987654);
+	F("%d", -987654);
+	F("%d", INT_MAX);
+	F("%d", INT_MIN);
+
+	// %u テスト
+	F("%u", 0);
+	F("%u", 12345);
+	F("%u", UINT_MAX);
+
+	return 0;
 }

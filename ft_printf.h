@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
+/*   By: 1652952399 <1652952399@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 19:08:56 by rkitao            #+#    #+#             */
-/*   Updated: 2024/05/08 11:38:48 by kitaoryoma       ###   ########.fr       */
+/*   Updated: 2024/05/08 18:41:16 by 1652952399       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ int	ft_convert_d(int num);
 int	ft_convert_i(int num);
 int	ft_convert_u(unsigned int num);
 int	ft_convert_p(void *address);
+int	ft_convert_x(unsigned int num);
+int	ft_convert_x2(unsigned int num);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkitao <rkitao@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/04 20:23:44 by rkitao            #+#    #+#             */
-/*   Updated: 2024/05/04 21:08:19 by rkitao           ###   ########.fr       */
+/*   Updated: 2024/05/08 12:12:19 by kitaoryoma       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int	ft_convert_d(int num)
 			res += 1;
 		num *= -1;
 	}
-	res = ft_convert_d_h(num, res);
+	res += ft_convert_d_h(num, 0);
 	return (res);
 }

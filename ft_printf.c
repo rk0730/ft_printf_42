@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kitaoryoma <kitaoryoma@student.42.fr>      +#+  +:+       +#+        */
+/*   By: 1652952399 <1652952399@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 18:18:29 by kitaoryoma        #+#    #+#             */
-/*   Updated: 2024/05/08 12:50:04 by kitaoryoma       ###   ########.fr       */
+/*   Updated: 2024/05/08 18:41:22 by 1652952399       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	ft_formats(char fmt, va_list *arg)
 		return (ft_convert_d(va_arg(*arg, int)));
 	else if (fmt == 'u')
 		return (ft_convert_u(va_arg(*arg, unsigned int)));
-	// else if (fmt == 'x')
-	// 	return (printf("%d", va_arg(*arg, int)));
-	// else if (fmt == 'X')
-	// 	return (printf("%d", va_arg(*arg, int)));
+	else if (fmt == 'x')
+		return (ft_convert_x(va_arg(*arg, unsigned int)));
+	else if (fmt == 'X')
+		return (ft_convert_x2(va_arg(*arg, unsigned int)));
 	write(STDOUT_FILENO, "error\n", 6);
 	return (-1);
 }

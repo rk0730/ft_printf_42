@@ -2,8 +2,6 @@ CC = cc
 AR = ar rc
 CFLAGS = -Wall -Wextra -Werror
 
-SANITIZE = -fsanitize=address -g
-
 SRCS = ft_printf.c \
 	ft_convert_cs.c \
 	ft_convert_d.c \
@@ -38,8 +36,7 @@ printf: $(TEST_SRC)
 	$(CC) $(CFLAGS) -I. $^ -o $@
 
 clean:
-	rm -rf sanitize.dSYM
-	rm -f sanitize ft_printf.txt printf.txt
+	rm -f ft_printf.txt printf.txt
 	rm -f $(OBJS)
 
 fclean: clean
